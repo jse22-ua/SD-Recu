@@ -46,7 +46,6 @@ class Coordinate:
     def __str__(self):
         return f"({self.x},{self.y})"
     
-    def 
 
 c1 = Coordinate(1,2)
 c2 = Coordinate(20,20)
