@@ -1,10 +1,13 @@
+#esta clase no se usará
+
 '''    N
        ^
    W <-|-> E
        v
        S
 '''
-directions = {
+''' 
+    directions = {
     'q' : (-1, -1),  # Arriba-izquierda(q)
     'w' : (0, -1),  # Arriba(w)
     'e' : (1, -1),  # Arriba-derecha(e)
@@ -57,4 +60,4 @@ c3.moveCoord(1) #(2,2)
 
 print(c1)
 print(c2)
-print(c3)
+print(c3)'''
