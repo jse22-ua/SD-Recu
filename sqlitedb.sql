@@ -22,7 +22,7 @@ personaje_id integer,
 id_mapa INTEGER,
 primary key(x,y,id_mapa),
 constraint fk_casilla_ciudad foreign key(ciudad) references ciudad(id),
-constraint fk_casilla_personaje foreign key(personaje_id) references personaje(id)
+constraint fk_casilla_personaje foreign key(personaje_id) references personaje(id),
 FOREIGN KEY (id_mapa) REFERENCES mapa(id)
 );
 
@@ -38,6 +38,7 @@ create table ciudades_mapa(
 	
 
 create table mapa(
-  id INTEGER PRIMARY KEY AUTOINCREMENT
-  partida text
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  partida text,
+  max_jugadores int
 );
