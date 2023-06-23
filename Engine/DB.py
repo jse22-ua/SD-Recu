@@ -2,7 +2,6 @@ import sqlite3
 import os
 from board import Board
 from exceptions.InvalidCoordinateException import InvalidCoordinateException
-import random
 from npc import NPC
 from player import Player
 
@@ -70,9 +69,12 @@ def saveNPC(npc:NPC):
     cursor.execute('SELECT COUNT(*) FROM personaje')
     numero_filas = cursor.fetchone()[0]
     cursor.execute("Insert into personaje(nivel,alias) values(?,?)",(npc.nivel,"NPC"+str(numero_filas+1)))
+    id = cursor.lastrowid
     con.commit()
     cursor.close()
     con.close()
+    return id
+
 
 
 def saveCities(cities:list):

@@ -1,4 +1,7 @@
 import sys
+import asyncio
+from kafka import KafkaConsumer
+from kafka import KafkaProducer
 import requests
 import random
 from board import Board
@@ -57,7 +60,13 @@ mapa_id = saveBoard(board,ids)
 iniciada = False
 print(board.showBoard())
 
+#consumer = KafkaConsumer()
+
+#while board.n_players != 1:
+
+
 ''' peticiones // hacer asincrono
+
     while True:
         if board.n_players == board.max_players:
             #devolver mensaje en socket
@@ -65,8 +74,7 @@ print(board.showBoard())
             #devolver otro mensaje
         else:
             #recibir peticiones para añadir jugadores
-'''
-'''
+
     while board.n_players == 1:
         #jugar
     
