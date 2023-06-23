@@ -1,4 +1,4 @@
-#esta clase no se usará
+#Descartado
 
 '''    N
        ^
@@ -6,8 +6,8 @@
        v
        S
 '''
-''' 
-    directions = {
+'''
+directions = {
     'q' : (-1, -1),  # Arriba-izquierda(q)
     'w' : (0, -1),  # Arriba(w)
     'e' : (1, -1),  # Arriba-derecha(e)
@@ -48,16 +48,4 @@ class Coordinate:
 
     def __str__(self):
         return f"({self.x},{self.y})"
-    
-
-c1 = Coordinate(1,2)
-c2 = Coordinate(20,20)
-c3 = Coordinate(2,3)
-
-c1.moveCoord(0) # (20,2)
-c2.moveCoord(7) #(1,1)
-c3.moveCoord(1) #(2,2)
-
-print(c1)
-print(c2)
-print(c3)'''
+    '''

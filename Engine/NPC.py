@@ -1,5 +1,6 @@
-from Character import Character
+from personaje import Personaje
 
-class NPC(Character):
-    def __init__(self, id):
-        super().__init__(id)
+class NPC(Personaje):
+    def __init__(self, id,nivel):
+        super().__init__(id,nivel)
+

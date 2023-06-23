@@ -3,4 +3,4 @@ class TooManyPlayersException(Exception):
         self.players = players
     
     def getError(self):
-        return f"Se supero el numero máximo de jugadores: {self.players}"
+        return f"ERROR: Se supero el numero máximo de jugadores: {self.players}"
