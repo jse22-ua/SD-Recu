@@ -1,4 +1,4 @@
-from Engine.npc import NPC
+from Engine.NPC import NPC
 from Engine.personaje import Personaje
 import random 
 import time
@@ -22,15 +22,14 @@ producer = KafkaProducer(bootstrap_servers=bs)
 MyNPC = NPC(0,nivel)
 producer.send('NPCs',value=nivel.to_bytes(4,'big'))
 consumer = KafkaConsumer('mapa',bootstrap_servers=bs)
+time.sleep(40)
 
-while MyNPC.is_alive:
+while True:
     moviment = random.choice(directions)
     producer.send('moviments',key=MyNPC.id.to_bytes(4,'big') ,value=moviment.encode('utf-8'))
-    time.sleep(5)
+    time.sleep(10)
     for message in consumer:
         if int.from_bytes(message.key,byteorder='big')== MyNPC.id:
-            if message.value.decode('utf-8')=="continua":
-                break
-            else:
-                print('has muerto') 
+            if message.value.decode('utf-8')=="you died":
                 exit()
+            break
