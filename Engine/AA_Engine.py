@@ -19,10 +19,12 @@ FIN = "FIN"
 
 arguments = sys.argv
 
-if len(arguments) != 3:
+if len(arguments) != 5:
     print("Número de argumentos incorrectos")
-    print("./AA_Engine puerto_escucha numero_max_jugadores")
+    print("./AA_Engine puerto_escucha numero_max_jugadores IPGESTOR PORTGESTOR")
     exit()
+
+bs = "" + sys.argv[3] + ":" + sys.argv[4]
 
 PORT = sys.argv[1]
 SERVER = socket.gethostbyname(socket.gethostname())
@@ -68,8 +70,7 @@ ids = saveCities(cities)
 board = Board(20,20,arguments[2],cities)
 mapa_id = saveBoard(board,ids)
 
-iniciada = False
-print(board.showBoard())
+#iniciada = False
 
 
 #SOCKET
@@ -107,6 +108,7 @@ def handle_client(conn, addr):
     
     print("ADIOS. TE ESPERO EN OTRA OCASION")
     conn.send(FIN.encode(FORMAT))
+    conn.send(fila[0].encode(FORMAT))
     conn.close()
 
 
@@ -134,9 +136,42 @@ def start():
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(ADDR)
 
-print("Servidor registry inicializándose...")
+print("Servidor Engine inicializándose...")
 #Iniciamos el servidor para el socket
 start()
+
+consumer = KafkaConsumer('NPCs',bootstrap_servers=bs)
+
+salir_bucle = False
+def temporizador():
+    global salir_bucle
+    segundos = 30
+    threading.Timer(segundos).start()
+    threading.Event().wait()
+    salir_bucle = True
+
+
+for message in consumer:
+    npc = NPC(0,int.from_bytes(message.value,byteorder='big'))
+    npc.id = saveNPC(npc)
+    board.addPlayer(npc)
+    if salir_bucle:
+        break
+
+consumer2 = KafkaConsumer('moviments',bootstrap_servers=bs)
+for mesg in consumer2:
+    thisplayer = board.get_Coord(int.from_bytes(message.key,byteorder='big'))
+    board.move(thisplayer,mesg.value.decode('utf-8'))
+    if thisplayer.position_x == None:
+        killPlayer(thisplayer.id)
+        producer = KafkaProducer(bootstrap_servers=bs)
+        producer.send('moviments',key=thisplayer.id(4,'big') ,value="you died".encode('utf-8'))
+    else:
+        movePlayer(thisplayer.id,thisplayer.position_x,thisplayer.position_y)
+        producer = KafkaProducer(bootstrap_servers=bs)
+        producer.send('moviments',key=thisplayer.id(4,'big') ,value=board.showBoard().encode('utf-8'))
+    if board.n_players == 1:
+        break
 
 
 #consumer = KafkaConsumer()

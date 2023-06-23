@@ -64,7 +64,19 @@ def movePlayer(id_player:int,x:int,y:int):
     res = cursor.fetchone()
     cursor.execute(f"UPDATE casilla SET personaje_id = {None} WHERE x = {res[0]} and y = {res[1]}")
     cursor.execute(f"UPDATE casilla SET personaje_id = {id_player} WHERE x = {x} and y = {y}")
-    cursor.execute()
+    con.commit()
+    cursor.close()
+    con.close()
+
+def killPlayer(id_player):
+    con = sqlite3.connect(ruta)
+    cursor  = con.cursor()
+    cursor.execute(f"SELECT x,y FROM casilla where personaje_id = {id_player}")
+    res = cursor.fetchone()
+    cursor.execute(f"UPDATE casilla SET personaje_id = {None} WHERE x = {res[0]} and y = {res[1]}")
+    con.commit()
+    cursor.close()
+    con.close()
 
 def saveNPC(npc:NPC):
     con = sqlite3.connect(ruta)
