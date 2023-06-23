@@ -1,7 +1,7 @@
 import random
 from personaje import Personaje
-from exceptions.tooManyPlayersException import TooManyPlayersException
-from exceptions.InvalidCoordinateException import InvalidCoordinateException
+from Exceptions.TooManyPlayersException import TooManyPlayersException
+from Exceptions.InvalidCoordinateException import InvalidCoordinateException
 from NPC import NPC
 from Player import Player
 
