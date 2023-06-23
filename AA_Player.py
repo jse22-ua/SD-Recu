@@ -58,6 +58,38 @@ def crear_perfil():
         client.send(message)
 
 
+def unirse_partida():
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect(ADDR_ENGINE)
+    print (f"Establecida conexión en [{ADDR_ENGINE}]")
+
+    msg = "Conectado"
+    while msg != FIN :
+        print("Envio al servidor: ", msg)
+        message = msg.encode(FORMAT)
+        msg_length = len(message)
+        send_length = str(msg_length).encode(FORMAT)
+        send_length += b' ' * (HEADER - len(send_length))
+        client.send(send_length)
+        client.send(message)
+        recibido = client.recv(2048).decode(FORMAT)
+        print("Recibo del Servidor: ", recibido)
+        if(recibido == FIN):
+            msg = FIN
+        else:
+            msg=input()
+
+    print ("CONEXION FINALIZADA")
+    if recibido != FIN:
+        print("Envio al servidor: ", FIN)
+        message = FIN.encode(FORMAT)
+        msg_length = len(message)
+        send_length = str(msg_length).encode(FORMAT)
+        send_length += b' ' * (HEADER - len(send_length))
+        client.send(send_length)
+        client.send(message)
+    
+
 #JUGADOR NORMAL
 opcion = 0
 while opcion != 3:
@@ -66,9 +98,8 @@ while opcion != 3:
     if opcion == 1:
         crear_perfil()
     elif opcion == 2:
-        pass #UNIRSE PARTIDA
+        unirse_partida()
     elif opcion == 3:
         pass
     else:
         print(f"Opcion incorrecta")
-
