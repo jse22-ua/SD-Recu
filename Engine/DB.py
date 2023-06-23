@@ -1,14 +1,17 @@
 import sqlite3
 import os
-from board import Board
-from exceptions.InvalidCoordinateException import InvalidCoordinateException
-from npc import NPC
-from player import Player
+from Board import Board
+from Exceptions.InvalidCoordinateException import InvalidCoordinateException
+from NPC import NPC
+from Player import Player
 
+'''
 ruta = os.path.dirname(__file__)
 ruta = os.path.dirname(ruta)
 ruta = ruta + '\database.db'
 ruta = ruta.replace('\\', '\\\\')
+'''
+ruta = "../database.db"
 
 def createMap(max_players):
     con = sqlite3.connect(ruta)
@@ -75,8 +78,6 @@ def saveNPC(npc:NPC):
     con.close()
     return id
 
-
-
 def saveCities(cities:list):
     ids_insertados = []
     con = sqlite3.connect(ruta)
@@ -89,5 +90,3 @@ def saveCities(cities:list):
     con.close()
 
     return ids_insertados
-
-

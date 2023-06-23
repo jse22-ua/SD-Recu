@@ -20,7 +20,7 @@ SERVER = socket.gethostbyname(socket.gethostname())
 ADDR = (SERVER, int(PORT))
 FORMAT = 'utf-8'
 FIN = "FIN"
-MAX_CONEXIONES = 3
+MAX_CONEXIONES = 4
 
 def handle_client(conn, addr):
     msg_length = conn.recv(HEADER).decode(FORMAT)
@@ -31,10 +31,8 @@ def handle_client(conn, addr):
         print(f"[NUEVA CONEXION] {addr} connected.")
         connected = True
 
-
     conn.send(f"Desea CREAR o EDITAR a un perfil de jugador".encode(FORMAT))
     while connected:
-        #
         msg_length = conn.recv(HEADER).decode(FORMAT)
         if msg_length:
             msg_length = int(msg_length)
@@ -139,4 +137,3 @@ server.bind(ADDR)
 print("Servidor registry inicializándose...")
 
 start()
-
