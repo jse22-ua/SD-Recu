@@ -1,2 +1,2 @@
 # SD-Recu
-LA BASE DE DATOS VA SERA SD-Recu/Database.db
+LA BASE DE DATOS SERA SD-Recu/Database.db
