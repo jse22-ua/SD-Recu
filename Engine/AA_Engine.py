@@ -4,10 +4,10 @@ from kafka import KafkaConsumer
 from kafka import KafkaProducer
 import requests
 import random
-from board import Board
-from npc import NPC
-from player import Player
-from exceptions.tooManyPlayersException import TooManyPlayersException
+from Board import Board
+from NPC import NPC
+from Player import Player
+from Exceptions.TooManyPlayersException import TooManyPlayersException
 from DB import *
 
 arguments = sys.argv

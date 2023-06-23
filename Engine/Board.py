@@ -1,9 +1,9 @@
 import random
 from personaje import Personaje
-from exceptions.tooManyPlayersException import TooManyPlayersException
-from exceptions.InvalidCoordinateException import InvalidCoordinateException
-from npc import NPC
-from player import Player
+from Exceptions.TooManyPlayersException import TooManyPlayersException
+from Exceptions.InvalidCoordinateException import InvalidCoordinateException
+from NPC import NPC
+from Player import Player
 
 directions = {
     'q': (-1, -1),  # Arriba-izquierda(q)
