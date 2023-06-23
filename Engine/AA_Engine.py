@@ -4,7 +4,7 @@ import random
 from Board import Board
 from NPC import NPC
 from Player import Player
-from exceptions.TooManyPlayersException import TooManyPlayersException
+from Exceptions.TooManyPlayersException import TooManyPlayersException
 from DB import *
 
 arguments = sys.argv
