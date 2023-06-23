@@ -1,9 +1,9 @@
 import sys
 import requests
 import random
-from board import Board
-from npc import NPC
-from player import Player
+from Board import Board
+from NPC import NPC
+from Player import Player
 from exceptions.tooManyPlayersException import TooManyPlayersException
 from DB import *
 
