@@ -165,11 +165,11 @@ for mesg in consumer2:
     if thisplayer.position_x == None:
         killPlayer(thisplayer.id)
         producer = KafkaProducer(bootstrap_servers=bs)
-        producer.send('moviments',key=thisplayer.id(4,'big') ,value="you died".encode('utf-8'))
+        producer.send('mapa',key=thisplayer.id(4,'big') ,value="you died".encode('utf-8'))
     else:
         movePlayer(thisplayer.id,thisplayer.position_x,thisplayer.position_y)
         producer = KafkaProducer(bootstrap_servers=bs)
-        producer.send('moviments',key=thisplayer.id(4,'big') ,value=board.showBoard().encode('utf-8'))
+        producer.send('mapa',key=thisplayer.id(4,'big') ,value=board.showBoard().encode('utf-8'))
     if board.n_players == 1:
         break
 
