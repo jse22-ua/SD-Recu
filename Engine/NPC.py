@@ -1,4 +1,4 @@
-from .personaje import Personaje
+from personaje import Personaje
 
 class NPC(Personaje):
     def __init__(self,id,nivel):
